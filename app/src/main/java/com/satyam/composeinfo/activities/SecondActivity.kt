@@ -24,17 +24,21 @@ import com.satyam.composeinfo.activities.ui.theme.GreenLight
 import com.satyam.composeinfo.activities.ui.theme.PurpleGrey40
 
 class SecondActivity : ComponentActivity() {
+    var mobileNo = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mobileNo = intent.getStringExtra("mobile").toString()
+
         setContent {
-            GreetingApp1()
+            GreetingApp1(mobileNo)
         }
     }
 }
 
 @Composable
-fun GreetingApp1() {
+fun GreetingApp1(mobileNo: String) {
     var greeting = remember { mutableStateOf("Welcome To second Activity") }
+    greeting.value=mobileNo
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,6 +70,6 @@ fun GreetingApp1() {
 @Preview
 @Composable
 fun GreetingAppPreview2() {
-    GreetingApp()
+    GreetingApp1("8989898989")
 }
 

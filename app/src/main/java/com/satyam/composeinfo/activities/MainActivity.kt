@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.satyam.composeinfo.activities.ui.theme.GreenLight
 import com.satyam.composeinfo.activities.ui.theme.PurpleGrey40
+import com.satyam.composeinfo.activities.ui.theme.White
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,16 +54,18 @@ fun GreetingApp() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp)
-                .background(GreenLight),
-            verticalArrangement = Arrangement.Center,
+                .padding(horizontal = 10.dp)
+                .background(White),
+
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
                 text = greeting.value,
                 fontSize = 24.sp,
-                modifier = Modifier.padding(bottom = 20.dp),
+                modifier = Modifier
+                    .padding(bottom = 20.dp)
+                    .padding(top = 20.dp),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold
                 )
@@ -70,12 +74,14 @@ fun GreetingApp() {
             var mobileNo = remember { mutableStateOf("") }
             var password = remember { mutableStateOf("") }
 
-            TextField(
+            OutlinedTextField(
                 value = mobileNo.value,
                 onValueChange = {
-                        mobileNo.value = it
+                    mobileNo.value = it
                 },
-                modifier = Modifier.padding(bottom = 15.dp).fillMaxWidth()
+                modifier = Modifier
+                    .padding(bottom = 15.dp)
+                    .fillMaxWidth()
                     .padding(horizontal = 20.dp),
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Phone
@@ -84,12 +90,14 @@ fun GreetingApp() {
             )
 
 
-            TextField(
+            OutlinedTextField(
                 value = password.value,
                 onValueChange = {
                     password.value = it
                 },
-                modifier = Modifier.padding(bottom = 15.dp).fillMaxWidth()
+                modifier = Modifier
+                    .padding(bottom = 15.dp)
+                    .fillMaxWidth()
                     .padding(horizontal = 20.dp),
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Password
@@ -99,14 +107,17 @@ fun GreetingApp() {
             )
 
 
-            Button(onClick = {
+            Button(
+                onClick = {
 //                greeting.value = "Logging In"
-                val intent = Intent(context, SecondActivity::class.java)
-                intent.putExtra("mobileNo", mobileNo.value)
-                context.startActivity(intent)
-            },
-modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp)
-                ) {
+                    val intent = Intent(context, SecondActivity::class.java)
+                    intent.putExtra("mobile", mobileNo.value)
+                    context.startActivity(intent)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
+            ) {
                 Text("LOG IN")
             }
 
